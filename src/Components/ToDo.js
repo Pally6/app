@@ -9,9 +9,14 @@ function Todo(props) {
     setModalIsOpen(true);
   }
 
-  function closeModal() {
+  function onCofirm() {
+    props.removeCard(props.id);
     setModalIsOpen(false);
   }
+  function onCancel() {
+    setModalIsOpen(false);
+  }
+
   return (
     <div className="card">
       <h2>{props.text}</h2>
@@ -20,8 +25,8 @@ function Todo(props) {
           Delete
         </button>
       </div>
-      {modalIsOpen && <Modal onCancel={closeModal} onConfirm={closeModal} />}
-      {modalIsOpen && <Backdrop onCancel = {closeModal} />}
+      {modalIsOpen && <Modal onCancel={onCancel} onConfirm={onCofirm} />}
+      {modalIsOpen && <Backdrop onCancel={onCancel} />}
     </div>
   );
 }
